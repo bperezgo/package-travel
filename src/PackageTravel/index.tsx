@@ -23,7 +23,7 @@ export function PackageTravel({ puzzlePieces }: PackageTravelData) {
         }}
       >
         {puzzlePieces.map((piece, key) => (
-          <CustomCard {...piece.itemProps} onClick={onClickHandler} />
+          <CustomCard key={key} {...piece.itemProps} onClick={onClickHandler} />
         ))}
       </Box>
     </div>
