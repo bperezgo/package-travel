@@ -1,5 +1,6 @@
 import React from 'react';
+import { CustomCard } from './Card';
 
 export function PackageTravel() {
-  return <div>PackageTravel</div>;
+  return <div>{<CustomCard />}</div>;
 }
