@@ -3,5 +3,6 @@ export interface IProps {
   price: number;
   type: string;
   name: string;
-  itemProps: IProps | null;
+  description: string;
+  itemProps?: IProps;
 }

@@ -1,5 +1,7 @@
-import { Reducer, CombinedState } from 'redux';
+import { combineReducers } from 'redux';
+import packageTravelReducer from './PackageTravel/data/packageTravelSlice';
 
-const reducers: Reducer<CombinedState<unknown[]>, any>[] = [];
-
-export default reducers;
+const rootReducer = combineReducers({
+  packageTravel: packageTravelReducer,
+});
+export default rootReducer;

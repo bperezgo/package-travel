@@ -1,41 +1,51 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { formatPrice } from '../../shared/utils';
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+type CustomCardProps = {
+  id: string;
+  type: string;
+  name: string;
+  description: string;
+  price: number;
+  onClick: (id: string) => void;
+};
 
-export function CustomCard() {
+// This kind of message can come with configuration, thinking in internationalization
+const removeMessage = 'Remove';
+
+export function CustomCard({
+  id,
+  description,
+  type,
+  name,
+  price,
+  onClick,
+}: CustomCardProps) {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
+          {type}
         </Typography>
         <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
+          {name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
+          {description}
         </Typography>
         <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          {formatPrice(price)}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={(e) => onClick(id)}>
+          {removeMessage}
+        </Button>
       </CardActions>
     </Card>
   );

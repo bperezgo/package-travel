@@ -1,16 +1,9 @@
-import {
-  CombinedState,
-  AnyAction,
-  Reducer,
-  applyMiddleware,
-  createStore,
-  combineReducers,
-  compose,
-} from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import { createLogger } from 'redux-logger';
-import reducers from './reducers';
+import rootReducer from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
 
 const middleware =
   process.env.NODE_ENV === 'development'
@@ -25,12 +18,8 @@ if (
   middlewares.push((window as any).__REDUX_DEVTOOLS_EXTENSION__());
 }
 
-const rootReducer: Reducer<unknown[], AnyAction> = (
-  state: any,
-  action: AnyAction
-) => {
-  return combineReducers(reducers)(state, action);
-};
-
 const store = createStore(rootReducer, compose(...middlewares));
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export default store;
