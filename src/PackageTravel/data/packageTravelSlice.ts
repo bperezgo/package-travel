@@ -11,6 +11,7 @@ const initialState: PackageTravelData = {
         id: 'someid',
         name: 'arena mar',
         price: 145000.5,
+        currency: 'COP',
         type: 'hotel',
       },
     },

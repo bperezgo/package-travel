@@ -12,6 +12,7 @@ type CustomCardProps = {
   name: string;
   description: string;
   price: number;
+  currency: string;
   onClick: (id: string) => void;
 };
 
@@ -24,6 +25,7 @@ export function CustomCard({
   type,
   name,
   price,
+  currency,
   onClick,
 }: CustomCardProps) {
   return (
@@ -38,9 +40,7 @@ export function CustomCard({
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {description}
         </Typography>
-        <Typography variant="body2">
-          {formatPrice(price)}
-        </Typography>
+        <Typography variant="body2">{formatPrice(price, currency)}</Typography>
       </CardContent>
       <CardActions>
         <Button size="small" onClick={(e) => onClick(id)}>
