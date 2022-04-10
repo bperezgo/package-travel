@@ -2,7 +2,6 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es2020",
-    // "typeRoots": ["./src/types", "node_modules/types"],
     "module": "commonjs",
     "jsx": "react",
     "noImplicitAny": true,
@@ -18,11 +17,7 @@
       "*": ["./node_modules/@types/*", "*"]
     },
     "types": ["reflect-metadata", "node"],
-    // Ensure that .d.ts files are created by tsc, but not .js files
     "declaration": true
-    // "emitDeclarationOnly": true
-    // Ensure that Babel can safely transpile files in the TypeScript project
-    // "isolatedModules": true
   },
   "include": [
     "src/**/*.tsx",
