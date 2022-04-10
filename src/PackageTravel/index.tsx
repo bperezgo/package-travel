@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { CustomCard } from './Card';
 import Box from '@mui/material/Box';
-import { removeItemFromPackageTravel } from './data/packageTravelSlice';
+import { removeItemFromPackageTravel } from './useCases';
 import { PackageTravelData } from './model';
 
 export function PackageTravel({ puzzlePieces }: PackageTravelData) {

@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
+import { Item } from './Item';
+import { RootState } from '../store';
 
 export function Items() {
+  const items = useSelector((state: RootState) => state.itemList);
   return (
     <List
       sx={{
@@ -18,32 +15,12 @@ export function Items() {
         bgcolor: 'background.paper',
       }}
     >
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <ImageIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <WorkIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Work" secondary="Jan 7, 2014" />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <BeachAccessIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Vacation" secondary="July 20, 2014" />
-      </ListItem>
+      {items.map((item, key) => (
+        <Fragment key={key}>
+          <Item {...item} key={key} />
+          <Divider variant="inset" component="li" />
+        </Fragment>
+      ))}
     </List>
   );
 }
