@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -43,6 +44,12 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new Dotenv({
+      safe: true,
+      allowEmptyValues: false,
+      // systemvars is useful for CI pipelinte. TODO: Review next
+      systemvars: false,
     }),
   ],
   devServer: {

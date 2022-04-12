@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -49,6 +50,12 @@ module.exports = {
       filename: '[name].css',
     }),
     new CleanWebpackPlugin(),
+    new Dotenv({
+      safe: true,
+      allowEmptyValues: false,
+      // systemvars is useful for CI pipelinte. TODO: Review next
+      systemvars: false,
+    }),
   ],
   optimization: {
     minimize: true,
