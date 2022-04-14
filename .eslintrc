@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb", "plugin:@typescript-eslint/recommended"],
+  "extends": ["airbnb-typescript", "plugin:@typescript-eslint/recommended"],
   "globals": {
     "document": false,
     "escape": false,
@@ -17,9 +17,13 @@
     "expect": true,
     "sinon": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
   "plugins": ["react", "jsx-a11y", "import"],
   "rules": {
+    "import/extensions": 0,
     "react/jsx-filename-extension": 0,
     "react/destructuring-assignment": 0,
     "array-bracket-spacing": 2,
@@ -173,13 +177,6 @@
     "no-unneeded-ternary": 2,
     "no-unreachable": 2,
     "no-unused-expressions": 0,
-    "no-unused-vars": [
-      2,
-      {
-        "vars": "all",
-        "args": "none"
-      }
-    ],
     "no-var": 2,
     "no-void": 0,
     "no-warning-comments": 0,
@@ -256,11 +253,24 @@
     "vars-on-top": 2,
     "wrap-iife": [2, "any"],
     "wrap-regex": 0,
-    "yoda": [2, "never"]
+    "yoda": [2, "never"],
+    "no-unused-vars": "off" // or "@typescript-eslint/no-unused-vars": "off",
+    // "unused-imports/no-unused-imports": "warn",
+    // "unused-imports/no-unused-vars": [
+    //   "warn",
+    //   {
+    //     "vars": "all",
+    //     "varsIgnorePattern": "^_",
+    //     "args": "after-used",
+    //     "argsIgnorePattern": "^_"
+    //   }
+    // ]
   },
   "settings": {
     "import/resolver": {
-      "config": "webpack.config.dev.js"
+      "webpack": {
+        "config": "webpack.config.dev.js"
+      }
     }
   }
 }
