@@ -11,7 +11,6 @@ type PackageTravelPageProps = {};
 
 export const PackageTravelPage: React.FC = ({}: PackageTravelPageProps) => {
   const packageTravel = useSelector((state: RootState) => state.packageTravel);
-  console.log(packageTravel);
   return (
     <Fragment>
       <DestinationSearcher />

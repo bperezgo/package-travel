@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { PackageTravelData } from './model';
 
 const initialState: PackageTravelData = {
-  id: '',
+  id: 'one-id',
   puzzlePieces: [
     {
       itemType: 'hotel',

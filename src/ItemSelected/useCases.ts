@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { IItemSelected } from './model';
 import { getItems } from './data';
 
@@ -9,6 +9,26 @@ const initialState: IItemSelected = {
   name: '',
   items: [],
 };
+
+export const itemListSlice = createSlice({
+  name: 'itemSelected',
+  initialState,
+  reducers: {
+    setItems: (state: IItemSelected, action) => {
+      state = action.payload;
+    },
+    selectItem: (
+      state: IItemSelected,
+      action: PayloadAction<IItemSelected>
+    ) => {
+      Object.assign(state, initialState);
+      Object.assign(state, action.payload);
+      state.id = action.payload.id;
+    },
+  },
+});
+
+export const { setItems, selectItem } = itemListSlice.actions;
 
 export const fetchHotelsItems = createAsyncThunk(
   'itemSelected/hotels',
@@ -48,17 +68,5 @@ export const fetchFlightsItems = createAsyncThunk(
     }
   }
 );
-
-export const itemListSlice = createSlice({
-  name: 'itemSelected',
-  initialState,
-  reducers: {
-    setItems: (state, action) => {
-      state = action.payload;
-    },
-  },
-});
-
-export const { setItems } = itemListSlice.actions;
 
 export default itemListSlice.reducer;

@@ -12,14 +12,18 @@ export interface ConfigApi {
 export default class Api {
   private client: AxiosInstance;
   private baseURL: string;
+
+  // Constru
   constructor(config: ConfigApi) {
     this.baseURL = config.baseURL;
     this.client = axios.create({
       baseURL: this.baseURL,
     });
   }
+
   public get<T>(apiEndpoint: string, config?: AxiosRequestConfig): Promise<T> {
     return this.client.get<any, T>(apiEndpoint, config);
   }
+
   public post() {}
 }

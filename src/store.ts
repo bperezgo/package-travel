@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import { createLogger } from 'redux-logger';
 import rootReducer from './reducers';
-import { configureStore } from '@reduxjs/toolkit';
 
 const middleware =
   process.env.NODE_ENV === 'development'

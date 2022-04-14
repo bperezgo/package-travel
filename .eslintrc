@@ -185,7 +185,7 @@
     "object-curly-spacing": [2, "always"],
     "one-var": 0,
     "operator-assignment": 0,
-    "operator-linebreak": [2, "after"],
+    "operator-linebreak": "off",
     "padded-blocks": 0,
     "prefer-const": 2,
     "quote-props": 0,
@@ -254,17 +254,11 @@
     "wrap-iife": [2, "any"],
     "wrap-regex": 0,
     "yoda": [2, "never"],
-    "no-unused-vars": "off" // or "@typescript-eslint/no-unused-vars": "off",
-    // "unused-imports/no-unused-imports": "warn",
-    // "unused-imports/no-unused-vars": [
-    //   "warn",
-    //   {
-    //     "vars": "all",
-    //     "varsIgnorePattern": "^_",
-    //     "args": "after-used",
-    //     "argsIgnorePattern": "^_"
-    //   }
-    // ]
+    "no-unused-vars": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "off"
   },
   "settings": {
     "import/resolver": {
