@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { IItemSelected } from './model';
 import { getItems } from './data';
+import { IProps } from 'src/types';
 
 const initialState: IItemSelected = {
   id: '',
@@ -26,46 +27,36 @@ export const itemListSlice = createSlice({
       state.id = action.payload.id;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(
+      fetchItemsFortheItemSelected.fulfilled,
+      (state, { payload }) => {
+        state.items = payload;
+      }
+    );
+    builder.addCase(
+      fetchItemsFortheItemSelected.rejected,
+      (state, { payload }) => {
+        console.log('FAILED');
+      }
+    );
+    builder.addCase(
+      fetchItemsFortheItemSelected.pending,
+      (state, { payload }) => {
+        console.log('PENDING');
+      }
+    );
+  },
 });
 
 export const { setItems, selectItem } = itemListSlice.actions;
 
-export const fetchHotelsItems = createAsyncThunk(
-  'itemSelected/hotels',
-  async (_, { dispatch }) => {
-    try {
-      const response = await getItems('hotels');
-      console.log(response);
-      dispatch(setItems(response));
-    } catch (err) {
-      console.log('[ERROR]', err);
-    }
-  }
-);
-
-export const fetchToursItems = createAsyncThunk(
-  'itemSelected/tours',
-  async (_, { dispatch }) => {
-    try {
-      const response = await getItems('tours');
-      console.log(response);
-      dispatch(setItems(response));
-    } catch (err) {
-      console.log('[ERROR]', err);
-    }
-  }
-);
-
-export const fetchFlightsItems = createAsyncThunk(
-  'itemSelected/flights',
-  async (_, { dispatch }) => {
-    try {
-      const response = await getItems('flights');
-      console.log(response);
-      dispatch(setItems(response));
-    } catch (err) {
-      console.log('[ERROR]', err);
-    }
+export const fetchItemsFortheItemSelected = createAsyncThunk<IProps[], any>(
+  'itemSelected/fetchForItemsFortheItemSelected',
+  async (itemType: string, thunkAPI) => {
+    const response = await getItems(itemType);
+    console.log('RESPONSE', response);
+    return response;
   }
 );
 

@@ -34,15 +34,9 @@ const newItem: IItem = {
 export const itemListSlice = createSlice({
   name: 'itemList',
   initialState,
-  reducers: {
-    selectItem: (state: { list: IItem[] }, action: PayloadAction<string>) => {
-      const itemSelected = state.list.find(
-        (value) => value.id === action.payload
-      );
-    },
-  },
+  reducers: {},
 });
 
-export const { selectItem } = itemListSlice.actions;
+export const {} = itemListSlice.actions;
 
 export default itemListSlice.reducer;

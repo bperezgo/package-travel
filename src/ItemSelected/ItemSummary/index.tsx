@@ -5,7 +5,6 @@ import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
 import MuiAccordionSummary, {
   AccordionSummaryProps,
 } from '@mui/material/AccordionSummary';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { IItemSelected } from '../model';
 
@@ -40,34 +39,12 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
   },
 }));
 
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: '1px solid rgba(0, 0, 0, .125)',
-}));
-
-export function Item({ description, itemType, name, items }: IItemSelected) {
-  const [expanded, setExpanded] = React.useState<string | false>('panel1');
-
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
-
+export function ItemSummary({ itemType, name }: IItemSelected) {
   return (
-    <Accordion
-      expanded={expanded === 'panel1'}
-      onChange={handleChange('panel1')}
-    >
-      <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-        <Typography>
-          {itemType} - {name}
-        </Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>
-          {description} {items.join(' ')}.
-        </Typography>
-      </AccordionDetails>
-    </Accordion>
+    <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+      <Typography>
+        {itemType} - {name}
+      </Typography>
+    </AccordionSummary>
   );
 }
