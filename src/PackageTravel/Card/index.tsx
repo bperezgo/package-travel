@@ -43,7 +43,7 @@ export function CustomCard({
         <Typography variant="body2">{formatPrice(price, currency)}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={(e) => onClick(id)}>
+        <Button size="small" onClick={() => onClick(id)}>
           {removeMessage}
         </Button>
       </CardActions>

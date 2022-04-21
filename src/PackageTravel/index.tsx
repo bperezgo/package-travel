@@ -1,11 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CustomCard } from './Card';
 import Box from '@mui/material/Box';
 import { removeItemFromPackageTravel } from './useCases';
-import { PackageTravelData } from './model';
+import { RootState } from '../store';
 
-export function PackageTravel({ puzzlePieces }: PackageTravelData) {
+export function PackageTravel() {
+  const puzzlePieces = useSelector(
+    (state: RootState) => state.packageTravel.puzzlePieces
+  );
   const dispatch = useDispatch();
   const onClickHandler = (itemId: string) => {
     dispatch(removeItemFromPackageTravel(itemId));
