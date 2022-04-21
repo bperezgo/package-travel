@@ -7,9 +7,7 @@ import { ItemSelected } from '../ItemSelected';
 import { DestinationSearcher } from '../DestinationSearcher';
 import { RootState } from '../store';
 
-type PackageTravelPageProps = {};
-
-export const PackageTravelPage: React.FC = ({}: PackageTravelPageProps) => {
+export const PackageTravelPage: React.FC = () => {
   const packageTravel = useSelector((state: RootState) => state.packageTravel);
   return (
     <Fragment>

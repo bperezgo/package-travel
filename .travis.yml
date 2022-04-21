@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - 14
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+git:
+  depth: 3
+branches:
+  only:
+    - master
+jobs:
+  include:
+    - stage: test
+      name: 'Automation Tests'
+      script: yarn test
+    - stage: deploy
+      name: 'Deploy Stage'
+      script: yarn build
+after_script:
+  - yarn clean
