@@ -15,8 +15,5 @@ jobs:
     - stage: test
       name: 'Automation Tests'
       script: yarn test
-    - stage: deploy
-      name: 'Deploy Stage'
-      script: yarn build
 after_script:
   - yarn clean
