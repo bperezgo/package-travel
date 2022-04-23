@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PackageTravelData } from './model';
 
 const initialState: PackageTravelData = {
@@ -28,12 +28,15 @@ export const packageTravelSlice = createSlice({
     addItemToPackageTravel: (state: PackageTravelData, action) => {
       state = action.payload;
     },
-    removeItemFromPackageTravel: (state: PackageTravelData, action) => {
+    removeItemFromPackageTravel: (
+      state: PackageTravelData,
+      action: PayloadAction<string>
+    ) => {
       // Comes the particular ItemId, it would be a string
       const puzzlePieces = state.puzzlePieces.filter(
         (value) => value.itemProps.id !== action.payload
       );
-      state = { ...state, puzzlePieces };
+      state.puzzlePieces = puzzlePieces;
     },
   },
 });
