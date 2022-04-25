@@ -1,3 +1,5 @@
+@import './shared.scss';
+
 body {
   background-repeat: no-repeat;
   padding: 0;
@@ -5,13 +7,4 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-}
-
-header {
-  background: #0055ff;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  height: 40px;
-  margin-bottom: 20px;
 }

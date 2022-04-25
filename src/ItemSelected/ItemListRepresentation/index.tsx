@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import { IItemSelected } from '../model';
 import { Accordion } from '../Accordion';
 
@@ -22,19 +21,13 @@ export function ItemListRepresentation({ description, items }: IItemSelected) {
   };
   return (
     <AccordionDetails>
-      <Typography>
-        {description}{' '}
-        {items.map((item, idx) => (
-          <p>{item.name}</p>
-        ))}
-      </Typography>
-      <div className="example-container">
+      <div className="Accordion-container">
         {items.map((item, key) => (
           <Accordion
             key={key}
-            id={item.id}
             expanded={expanded}
             setExpanded={onClickHandler}
+            {...item}
           />
         ))}
       </div>
