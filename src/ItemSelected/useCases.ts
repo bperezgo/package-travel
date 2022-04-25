@@ -55,7 +55,6 @@ export const fetchItemsFortheItemSelected = createAsyncThunk<IProps[], any>(
   'itemSelected/fetchForItemsFortheItemSelected',
   async (itemType: string, thunkAPI) => {
     const response = await getItems(itemType);
-    console.log('RESPONSE', response);
     return response;
   }
 );

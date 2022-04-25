@@ -1,53 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { styled } from '@mui/material/styles';
-import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
-import { ItemSummary } from './ItemSummary';
+import { motion } from 'framer-motion';
 import { ItemListRepresentation } from './ItemListRepresentation';
 import { RootState } from '../store';
 import { fetchItemsFortheItemSelected } from './useCases';
+import { Typography } from '@mui/material';
+import './styles.scss';
 
-const Accordion = styled((props: AccordionProps) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  '&:not(:last-child)': {
-    borderBottom: 0,
-  },
-  '&:before': {
-    display: 'none',
-  },
-}));
+const variants = {
+  final: { opacity: 1, height: '20em' },
+  initial: { opacity: 0, height: '0' },
+};
 
 export function ItemSelected() {
-  const [expanded, setExpanded] = useState<string | false>('panel1');
   const itemSelected = useSelector((state: RootState) => state.itemSelected);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (itemSelected.itemType) {
+      // TODO: Cache strategy
       dispatch(fetchItemsFortheItemSelected(itemSelected.itemType));
     }
   }, [itemSelected.itemType]);
-
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
 
   if (itemSelected.id === '' || itemSelected.itemType === '') {
     return <div></div>;
   }
 
   return (
-    <div>
-      <Accordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
-        <ItemSummary {...itemSelected} />
-        <ItemListRepresentation {...itemSelected} />
-      </Accordion>
-    </div>
+    <motion.div
+      className="ItemSelected-container"
+      initial="initial"
+      animate="final"
+      variants={variants}
+      transition={{ duration: 0.4 }}
+    >
+      <Typography component="h2">
+        {itemSelected.itemType} - {itemSelected.name}
+      </Typography>
+      <ItemListRepresentation {...itemSelected} />
+    </motion.div>
   );
 }
