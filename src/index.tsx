@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from './routes/App';
 import { Provider } from 'react-redux';
 import store from './store';
+import './global.scss';
 
 const container = document.getElementById('app') as HTMLElement;
 
